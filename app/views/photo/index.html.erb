@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+
+    body {
+        background-color: #cbc5ed;
+        text-align: center;
+        color: #d90f27;
+    }
+    tr:nth-child(even) {
+        background-color: #2d0de0;
+    }
+</style>
+
+<br bgcolor="#dee8b5">
+<div style="...">
+  <h1>Photos of Users with Comments</h1>
+</div>
+
+<% @photo.each do |photo| %>
+  <p><%=image_tag("https://kbyrosu.s3.us-west-1.amazonaws.com/images/"+photo.file_name) %></p>
+  <p> Photo creation time is : <%= photo.date_time %></p>
+  </br>
+  <% @comment.where("photo_id=?",photo.id).each do |comment| %>
+    <p> Comments : <%= comment.comment_text %></p>
+    <p> Comment Created at: <%= comment.date_time %></p>
+    <p> Commented by: <%= link_to commented_by(comment.user_id),id:comment.user_id, action:"index", controller:"photo" %>  </p>
+
+  <% end %>
+
+<% end %>
+
+</body>
+</html>

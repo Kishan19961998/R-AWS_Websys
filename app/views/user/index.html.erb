@@ -1,0 +1,13 @@
+<%title ="User Photos List" %>
+
+<h1> List Of All Users</h1>
+<table>
+  <th>USERS</th>
+---------------------------
+  <% for user in @user %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= link_to user.username, controller: "photo" , id:user.id, action: "index" %></td>
+  <% end %>
+  </tr>
+</table>
